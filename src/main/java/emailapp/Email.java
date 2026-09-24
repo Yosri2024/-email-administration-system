@@ -244,6 +244,17 @@ public class Email {
             System.out.println("Alternate email not changed - empty input.");
             return;
         }
+        // Explicit check demanded by user: must contain @ and .com/.xx
+        if (!input.contains("@")) {
+            System.out.println("Invalid email! Must contain '@' (e.g. name@gmail.com)");
+            return;
+        }
+        if (!input.toLowerCase().contains(".com") && !input.contains(".")) {
+            System.out.println("Invalid email! Must contain '.' and domain like '.com' (e.g. name@gmail.com)");
+            return;
+        }
+        // Stricter: if user wants exactly .com, uncomment next line:
+        // if (!input.toLowerCase().endsWith(".com")) { System.out.println("Invalid! Must end with '.com'"); return; }
         if (!EMAIL_PATTERN.matcher(input).matches()) {
             System.out.println("Invalid email format! Example: name@example.com");
             return;
