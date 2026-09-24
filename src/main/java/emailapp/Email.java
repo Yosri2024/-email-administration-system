@@ -237,30 +237,34 @@ public class Email {
     }
 
     public void setAlternateEmail() {
-        System.out.print("Enter alternate email: ");
-        String input = scanner.nextLine().trim();
+        while (true) {
+            System.out.print("Enter alternate email (or 'quit' to cancel): ");
+            String input = scanner.nextLine().trim();
 
-        if (input.isEmpty()) {
-            System.out.println("Alternate email not changed - empty input.");
+            if (input.equalsIgnoreCase("quit") || input.equalsIgnoreCase("q") || input.equalsIgnoreCase("exit")) {
+                System.out.println("Alternate email change cancelled.");
+                return;
+            }
+            if (input.isEmpty()) {
+                System.out.println("Alternate email not changed - empty input. Try again or type 'quit'");
+                continue;
+            }
+            if (!input.contains("@")) {
+                System.out.println("Invalid email! Must contain '@' (e.g. name@gmail.com) - try again or type 'quit'");
+                continue;
+            }
+            if (!input.toLowerCase().contains(".com") && !input.contains(".")) {
+                System.out.println("Invalid email! Must contain '.' and domain like '.com' (e.g. name@gmail.com) - try again or type 'quit'");
+                continue;
+            }
+            if (!EMAIL_PATTERN.matcher(input).matches()) {
+                System.out.println("Invalid email format! Example: name@example.com - try again or type 'quit'");
+                continue;
+            }
+            this.alternateEmail = input;
+            System.out.println("ALTERNATE EMAIL SET SUCCESSFULLY!");
             return;
         }
-        // Explicit check demanded by user: must contain @ and .com/.xx
-        if (!input.contains("@")) {
-            System.out.println("Invalid email! Must contain '@' (e.g. name@gmail.com)");
-            return;
-        }
-        if (!input.toLowerCase().contains(".com") && !input.contains(".")) {
-            System.out.println("Invalid email! Must contain '.' and domain like '.com' (e.g. name@gmail.com)");
-            return;
-        }
-        // Stricter: if user wants exactly .com, uncomment next line:
-        // if (!input.toLowerCase().endsWith(".com")) { System.out.println("Invalid! Must end with '.com'"); return; }
-        if (!EMAIL_PATTERN.matcher(input).matches()) {
-            System.out.println("Invalid email format! Example: name@example.com");
-            return;
-        }
-        this.alternateEmail = input;
-        System.out.println("ALTERNATE EMAIL SET SUCCESSFULLY!");
     }
 
     public void showInfo() {

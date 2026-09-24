@@ -82,13 +82,24 @@ class EmailTest {
 
     @Test
     void testAlternateEmailValidation() {
-        Scanner sc = scannerWithInput("1\nnot-an-email\ntest@example.com\n");
-        Email email = new Email("A", "B", sc);
-        email.setAlternateEmail(); // "not-an-email" -> invalid, should remain null
-        assertNull(email.getAlternateEmail());
-        email.setAlternateEmail(); // "test@example.com" -> valid
-        assertEquals("test@example.com", email.getAlternateEmail());
-        sc.close();
+        // New loop behavior: invalid -> retry until valid, or quit to cancel
+        Scanner sc1 = scannerWithInput("1\nnot-an-email\nquit\n");
+        Email email1 = new Email("A", "B", sc1);
+        email1.setAlternateEmail(); // "not-an-email" -> invalid, then "quit" -> cancelled => null
+        assertNull(email1.getAlternateEmail());
+        sc1.close();
+
+        Scanner sc2 = scannerWithInput("1\nnot-an-email\ntest@example.com\n");
+        Email email2 = new Email("A", "B", sc2);
+        email2.setAlternateEmail(); // "not-an-email" -> retry -> "test@example.com" -> valid
+        assertEquals("test@example.com", email2.getAlternateEmail());
+        sc2.close();
+
+        Scanner sc3 = scannerWithInput("1\na\nkk\ntest@gmail.com\n");
+        Email email3 = new Email("A", "B", sc3);
+        email3.setAlternateEmail(); // "a","kk" invalid -> finally "test@gmail.com"
+        assertEquals("test@gmail.com", email3.getAlternateEmail());
+        sc3.close();
     }
 
     @Test
