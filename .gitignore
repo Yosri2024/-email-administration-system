@@ -1,0 +1,47 @@
+# --- Java / Maven ---
+target/
+out/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+hs_err_pid*
+
+# --- IntelliJ IDEA ---
+.idea/
+*.iml
+*.ipr
+*.iws
+.idea_modules/
+
+# --- Eclipse ---
+.classpath
+.project
+.settings/
+bin/
+
+# --- VS Code ---
+.vscode/
+*.code-workspace
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+*~
+
+# --- Project specific ---
+# Stored employee data (generated at runtime)
+data/*
+!data/.gitkeep
+Info.txt
+
+# --- Temp ---
+/tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+
+# --- Maven wrapper (if not using wrapper, ignore) ---
+# .mvn/wrapper/maven-wrapper.jar
