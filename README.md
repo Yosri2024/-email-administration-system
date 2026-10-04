@@ -1,6 +1,6 @@
 # Email Administration System — Java Core
 
-> Production-ready refactoring of Udemy project: *Project-1 Email Administration System* (`8.1 JAVA EMAIL ADMINISTRATION CODE`).
+ Email Administration System* (`8.1 JAVA EMAIL ADMINISTRATION CODE`).
 
 [![Java](https://img.shields.io/badge/Java-17%2B-orange)](https://openjdk.org/)
 [![Maven](https://img.shields.io/badge/Maven-3.9-blue)](https://maven.apache.org/)
