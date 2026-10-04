@@ -172,7 +172,3 @@ Tests use `ByteArrayInputStream` to simulate user input without manual typing.
 
 MIT — see [LICENSE](LICENSE).
 
-## 🙏 Credits
-
-Original tutorial: **Udemy — Develop 20 Real World Java Web Application Projects 2021** by GigaCourse.  
-Refactored to production standards for portfolio/GitHub by Yosri.
